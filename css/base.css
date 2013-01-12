@@ -373,6 +373,7 @@ caption {
 
 header {
 	background: #882345 url("../img/swoosh3.png") no-repeat 0 60px;
+	color: #ccc;
 	height: 270px;
 }
 
@@ -416,10 +417,26 @@ img#logo {
 	border-bottom: 1px solid;
 }
 
-#search {
-	float: right;
-	margin-top: 54px;
+#blog-description {
+	margin-top: 6px;	
 }
+
+#search-wrapper {
+	float:right;
+	margin-top:-143px;
+}
+
+#search input[type="text"] {
+    background: url("../img/search-white.png") no-repeat scroll 10px 4px rgb(255, 255, 255);
+    border: 1px solid rgb(221, 221, 221);
+    color: rgb(68, 68, 68);
+    border-radius: 16px 16px 16px 16px;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.15) inset;
+    outline: medium none;
+    padding: 4px 12px 4px 36px;
+    width: 180px;
+}
+/*
 
 #search input[type="text"] {
 	background: #fff url("../img/search-white.png") no-repeat 10px 4px;
@@ -435,7 +452,7 @@ img#logo {
 	padding: 4px 12px 4px 36px;
 	width: 150px;
 }
-
+*/
 /* Navigation (horizontal menu)
 -------------------------------------------------------------- */
 
@@ -1143,6 +1160,7 @@ h2.fancy-header {
 
 /* Widget styles */
 .header-widget{
+	color: #ccc;
 	margin-top: -154px;
 	float: right;
 	
