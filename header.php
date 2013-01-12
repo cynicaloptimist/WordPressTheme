@@ -10,7 +10,7 @@
         if ( is_single() ) { single_post_title(); }       
         elseif ( is_home() || is_front_page() ) { bloginfo('name'); print ' | '; bloginfo('description'); get_page_number(); }
         elseif ( is_page() ) { single_post_title(''); }
-        elseif ( is_search() ) { bloginfo('name'); print ' | Search results for ' . wp_specialchars($s); get_page_number(); }
+        elseif ( is_search() ) { bloginfo('name'); print ' | Search results for "' . esc_html($s) . '"'; get_page_number(); }
         elseif ( is_404() ) { bloginfo('name'); print ' | Not Found'; }
         else { bloginfo('name'); wp_title('|'); get_page_number(); }
     ?></title>
@@ -65,23 +65,24 @@
 <?php } ?>
             </div>
       </div>
-      <!-- #masthead -->
-     <!-- <form id="search" action="http://www.nmsu.edu/search_results.php" method="POST">
-        <fieldset>
-          <input type="hidden" name="domains" value="nmsu.edu" />
-          <input type="hidden" name="sitesearch" value="nmsu.edu" />
-          <input type="text" name="q" id="q" value="" placeholder="Search NMSU" />
-          <a onClick="document.getElementById('search').submit()"></a>
-        </fieldset>
-      </form> -->
       
-<!-- #header_widget -->
+      <!-- #masthead -->
+<!-- #header_widget --><!--
 <?php if ( is_sidebar_active('header_widget') ) : ?>
 	<?php dynamic_sidebar('header_widget'); ?>
 	<?php endif; ?>
-
-
-
+-->
+      <div id="search-wrapper">
+     <form id="search" action="<?php bloginfo('url') . '/'?>" method="GET">
+        <fieldset>
+          <input type="hidden" name="domains" value="nmsu.edu" />
+          <input type="hidden" name="sitesearch" value="nmsu.edu" />
+          <input type="hidden" name="search_method" value="google" />
+          <input type="text" name="s" id="s" value="" placeholder="Search <?php bloginfo('name'); ?>" />
+          <a onClick="document.getElementById('search').submit()"></a>
+        </fieldset>
+      </form>
+      </div>
 
     </header>
     <nav id="horizontal"> 
@@ -99,5 +100,5 @@
      <div id="feature"> <img src="<?php bloginfo('template_directory'); ?>/img/swim.jpg" width="960" height="480"> </div>
     <!-- #feature -->
 	
-        <?php if(function_exists(simple_breadcrumb)) {simple_breadcrumb();} ?>
+        <?php if(function_exists('simple_breadcrumb')) {simple_breadcrumb();} ?>
       
