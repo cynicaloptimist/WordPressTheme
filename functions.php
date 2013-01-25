@@ -120,8 +120,15 @@ $example_update_checker = new ThemeUpdateChecker(
     'http://saem.nmsu.edu/theme_updates/updatefile.json'
 );
 
+/*
+  Theme Settings
+*/
+include( get_template_directory() . '/inc/theme-settings.php' );
+
 /**
  * Adds support for a custom header image.
  */
 require( get_template_directory() . '/inc/custom-header.php' );
+
+
 ?>
