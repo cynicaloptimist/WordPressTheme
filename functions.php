@@ -119,4 +119,9 @@ $example_update_checker = new ThemeUpdateChecker(
     'nmsu_testing',
     'http://saem.nmsu.edu/theme_updates/updatefile.json'
 );
+
+/**
+ * Adds support for a custom header image.
+ */
+require( get_template_directory() . '/inc/custom-header.php' );
 ?>

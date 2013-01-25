@@ -96,8 +96,26 @@
       <div id="right-wraparound"></div>
     </nav>
     <div id="main">
-    	
-     <div id="feature"> <img src="<?php bloginfo('template_directory'); ?>/img/swim.jpg" width="960" height="480"> </div>
+    <?php
+        /*
+          Leave swim.jpg as a default that can be later improved into a better default image.
+          If a custom image was set we will need the path to the image.
+        */
+      ?>
+      <!--<div id="feature"> <img src="<?php bloginfo('template_directory'); ?>/img/swim.jpg" width="960" height="480"> </div>-->
+      <div id="feature"> 
+      <?php
+        if ( is_page ( ) ) {
+      ?>
+
+      <?php
+        } else {
+      ?>
+        <img src="<?php header_image ( ); ?>" width="<?php echo $header_image_width; ?>" height="<?php echo $header_image_height; ?>">
+      <?php
+        }
+      ?>
+      </div>
     <!-- #feature -->
 	
         <?php if(function_exists('simple_breadcrumb')) {simple_breadcrumb();} ?>
