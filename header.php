@@ -112,7 +112,7 @@
       <?php
         if ( is_page ( ) ) {
       ?>
-
+        <img src="<?php header_image ( ); ?>" width="<?php echo $header_image_width; ?>" height="<?php echo $header_image_height; ?>">
       <?php
         } else {
       ?>

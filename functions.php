@@ -91,7 +91,7 @@ function is_sidebar_active( $index ){
  
   $widgetcolums = wp_get_sidebars_widgets();
           
-  if ($widgetcolums[$index]) return true;
+  if (isset($widgetcolums[$index])) return true;
    
     return false;
 } // end is_sidebar_active
