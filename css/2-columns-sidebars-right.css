@@ -6,7 +6,8 @@ Sidebars: Right, stacked
 
 #container {
 	float: left;
-	margin: 0 -300px 0 0;
+	/*margin: 0 -300px 0 0;*/
+	margin-right: -300px;
 	width: 100%;
 }
 

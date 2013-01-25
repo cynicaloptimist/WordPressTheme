@@ -91,7 +91,7 @@ function is_sidebar_active( $index ){
  
   $widgetcolums = wp_get_sidebars_widgets();
           
-  if ($widgetcolums[$index]) return true;
+  if (isset($widgetcolums[$index])) return true;
    
     return false;
 } // end is_sidebar_active
@@ -107,6 +107,12 @@ function register_my_menus() {
 }
 add_action( 'init', 'register_my_menus' );
 
+function add_search_params() { 
+    global $wp; 
+    $wp->add_query_var('search_method'); 
+}
+add_action('init','add_search_params');
+
 //Initialize the update checker.
 require 'theme-updates/theme-update-checker.php';
 $example_update_checker = new ThemeUpdateChecker(
@@ -114,20 +120,30 @@ $example_update_checker = new ThemeUpdateChecker(
     'http://saem.nmsu.edu/theme_updates/updatefile.json'
 );
 
+/*
+  Theme Settings
+*/
+include( get_template_directory() . '/inc/theme-settings.php' );
 
-//Theme options panel
+/**
+ * Adds support for a custom header image.
+ */
+require( get_template_directory() . '/inc/custom-header.php' );
 
-function setup_theme_admin_menus() {
-    add_submenu_page('themes.php',
-        'Front Page Elements', 'Template Options', 'manage_options',
-        'front-page-elements', 'theme_front_page_settings');
-}
-// This tells WordPress to call the function named "setup_theme_admin_menus"
-// when it's time to create the menu pages.
-add_action("admin_menu", "setup_theme_admin_menus");
-
-function theme_front_page_settings() {
-    echo "Hello, world!";
+function display_breadcrumbs(){
+    global $post;
+    global $wpdb;
+    
+    if(is_array($post->ancestors) && !is_404()):
+        $ancestors=array_reverse($post->ancestors);
+        foreach($ancestors as $ancestor):
+            $apage = $wpdb->get_row("SELECT ID,post_title FROM $wpdb->posts WHERE post_type='page' AND post_status='publish' AND ID=$ancestor;",ARRAY_A);
+            ?><li>
+                <a href="<?php print get_permalink($apage[ID]); ?>" class="__animated_sidebar_tips" title="<? print $apage['post_title']; ?>"><?php print $apage[post_title] ?></a>
+            </li><?php     
+        endforeach;
+    endif;
+    
 }
 
 ?>
