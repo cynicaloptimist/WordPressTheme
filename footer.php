@@ -1,6 +1,7 @@
     </div>
     <!-- #main -->
-<footer div id="footer-container">
+<footer>
+<div id="footer-container">
         
     <?php if ( is_sidebar_active('footer_widget_1') ) : ?>
 
