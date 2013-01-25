@@ -13,7 +13,7 @@ function nmsu_theme_custom_header_setup() {
   $args = array(
     // Text color and image (empty to use none).
     'default-text-color'     => '444',
-    'default-image'          => 'img/swim.jpg', //This can be changed to a better default image later.
+    'default-image'          => get_template_directory ( ) . 'img/swim.jpg', //This can be changed to a better default image later.
 
     // Set height and width, with a maximum value for the width.
     'height'                 => 450,
