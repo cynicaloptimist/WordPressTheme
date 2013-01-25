@@ -130,5 +130,20 @@ include( get_template_directory() . '/inc/theme-settings.php' );
  */
 require( get_template_directory() . '/inc/custom-header.php' );
 
+function display_breadcrumbs(){
+    global $post;
+    global $wpdb;
+    
+    if(is_array($post->ancestors) && !is_404()):
+        $ancestors=array_reverse($post->ancestors);
+        foreach($ancestors as $ancestor):
+            $apage = $wpdb->get_row("SELECT ID,post_title FROM $wpdb->posts WHERE post_type='page' AND post_status='publish' AND ID=$ancestor;",ARRAY_A);
+            ?><li>
+                <a href="<?php print get_permalink($apage[ID]); ?>" class="__animated_sidebar_tips" title="<? print $apage['post_title']; ?>"><?php print $apage[post_title] ?></a>
+            </li><?php     
+        endforeach;
+    endif;
+    
+}
 
 ?>

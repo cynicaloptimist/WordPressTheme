@@ -107,6 +107,7 @@
         */
       ?>
       <!--<div id="feature"> <img src="<?php bloginfo('template_directory'); ?>/img/swim.jpg" width="960" height="480"> </div>-->
+      <?php if ( is_page_template('header-page.php')): ?>
       <div id="feature"> 
       <?php
         if ( is_page ( ) ) {
@@ -121,6 +122,25 @@
       ?>
       </div>
     <!-- #feature -->
-	
-        <?php if(function_exists('simple_breadcrumb')) {simple_breadcrumb();} ?>
-      
+      <?php endif; ?>
+
+	     <?php if ( !is_home() && !is_front_page() && !is_404()): ?>
+       <div id="breadcrumbs"> 
+          <div id="breadcrumb-trail-contents">
+             
+              <div id="breadcrumb-link-list"> 
+                  <ul>
+                      <li><a href="http://www.nmsu.edu">NMSU</a></li>
+                      <li class="site-breadcrumb"><a href="<?php bloginfo('url') ?>"><?php bloginfo('name') ?></a></li>
+                      
+                      <?php display_breadcrumbs(); ?>
+                      
+
+                          <li><a href="<?php the_permalink() ?>"><?php print $post->post_title; ?></a></li>
+                  </ul> 
+              </div> <!-- breadcrumb-link-list --> 
+              <div id="breadcrumb-utility"><span></span></div>
+          </div> <!-- breadcrumb-trail-contents -->
+      </div> <!-- breadcrumb-trail-container --> 
+      <!-- END BREADCRUMB TRAIL -->
+    <?php endif; ?>
