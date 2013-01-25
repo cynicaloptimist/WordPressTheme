@@ -58,6 +58,9 @@ header + #main { /* Shifts the content area up into the header if the horizontal
 	margin-top: 20px;
 	height: 220px;
 }
+#main #container:first-child { /*creates a margin for the content if there are no breadcrumbs or header image. */
+	padding-top: 20px;
+}
 
 #container {
 	background: #fff;
