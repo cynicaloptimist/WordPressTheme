@@ -20,7 +20,7 @@
 	*/
 	function setup_theme_settings_menu ( ) {
 	    add_submenu_page('themes.php',
-	        'Settings', 'Settings', 'manage_options',
+	        'NMSU Theme Settings', 'NMSU Theme Settings', 'manage_options',
 	        'settings', 'theme_settings');
 	}
 	add_action("admin_menu", "setup_theme_settings_menu");  
@@ -39,6 +39,12 @@
 		//We will now break out of PHP to save processing of raw HTML.
 ?>
 		<div class="wrap">  
+			<?php $settings = get_option('nmsu_theme_options'); ?>
+			<?php if(isset($_POST['search_method'])):
+				$settings['search_method'] = $_POST['search_method'];
+				update_option('nmsu_theme_options', $settings);
+			endif; ?>
+
 	        <?php screen_icon('themes'); ?> <h2>Front page elements</h2>  
 	        <form method="POST" action="">  
 	            <table class="form-table">
@@ -52,9 +58,9 @@
 	                    </th>  
 	                    <td>  
 	                        <select name="header_type">
-	                        	<option value="0"<?=(get_option("header_type")==0? " selected='selected'" : "")?>>Image</option>
-	                        	<option value="1"<?=(get_option("header_type")==1? " selected='selected'" : "")?>>Image+Text</option>
-	                        	<option value="2"<?=(get_option("header_type")==2? " selected='selected'" : "")?>>Shortcode</option>
+	                        	<option value="0"<?php echo (get_option("header_type")==0? " selected='selected'" : "");?>>Image</option>
+	                        	<option value="1"<?php echo (get_option("header_type")==1? " selected='selected'" : "");?>>Image+Text</option>
+	                        	<option value="2"<?php echo (get_option("header_type")==2? " selected='selected'" : "");?>>Shortcode</option>
 	                        </select>
 	                    </td>  
 	                    <th scope="row">
@@ -66,7 +72,22 @@
 	                    	[HEADER_CHANGE_AREA]
 	                    </td>	
 	                </tr>  
-	            </table>  
+	                <tr valign="top">  
+	                    <th scope="row">  
+	                        <label for="search_method">  
+	                            Search Method:  
+	                        </label>  
+	                    </th>  
+	                    <td>
+	                        <select name="search_method">
+	                        	<option value="default"			<?php echo (!isset($settings['search_method']) || $settings['search_method']=='default'? " selected='selected'" : "");?>>Wordpress Default</option>
+	                        	<option value="google"			<?php echo ($settings['search_method']=='google'? " selected='selected'" : "");?>>Google Search</option>
+	                        	<!--<option value="google_custom"	<?php echo ($settings['search_method']=='google_custom'? " selected='selected'" : "");?>>Google Custom</option>-->
+	                        </select>
+	                    </td>  
+	                </tr>  
+	            </table>
+	            <input type="submit" label="Submit">  
 	        </form>  
 	    </div>  
 <?php
