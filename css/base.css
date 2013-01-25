@@ -424,6 +424,7 @@ img#logo {
 #search-wrapper {
 	float:right;
 	margin-top:-143px;
+	margin-right:20px;
 }
 
 #search input[type="text"] {
