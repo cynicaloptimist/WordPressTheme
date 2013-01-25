@@ -101,12 +101,8 @@
     </nav>
     <div id="main">
     <?php
-        /*
-          Leave swim.jpg as a default that can be later improved into a better default image.
-          If a custom image was set we will need the path to the image.
-        */
+       
       ?>
-      <!--<div id="feature"> <img src="<?php bloginfo('template_directory'); ?>/img/swim.jpg" width="960" height="480"> </div>-->
       <?php if ( is_page_template('header-page.php')): ?>
       <div id="feature"> 
       <?php
