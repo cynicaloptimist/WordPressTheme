@@ -20,7 +20,7 @@
     <link rel="stylesheet" type="text/css" href="<?php bloginfo('stylesheet_url'); ?>" />
 
      
-
+    <?php $settings=get_option('nmsu_theme_options'); ?>
 		<?php $assignCSS=get_bloginfo('template_directory'); ?>
 		<?php if ( is_page_template('1col-page.php')) { 
 			print "<link rel='stylesheet' type='text/css' href='$assignCSS/css/1-column-sidebars-below.css' />";
@@ -59,9 +59,9 @@
         <div class="visually-hidden">New Mexico State University</div>
         <div id="blog-title"><span><a href="<?php bloginfo( 'url' ) ?>/" title="<?php bloginfo( 'name' ) ?>" rel="home"><?php bloginfo( 'name' ) ?></a></span></div>
 <?php if ( is_home() || is_front_page() ) { ?>
-                    <h1 id="blog-description"><?php bloginfo( 'description' ) ?></h1>
-<?php } else { ?> 
-                    <div id="blog-description"><?php bloginfo( 'description' ) ?></div>
+                    <p id="blog-description"><?php bloginfo( 'description' ) ?></p>
+<?php } else { ?>
+                    <p id="blog-description"><?php bloginfo( 'description' ) ?></p>
 <?php } ?>
             </div>
       </div>
@@ -77,7 +77,11 @@
         <fieldset>
           <input type="hidden" name="domains" value="nmsu.edu" />
           <input type="hidden" name="sitesearch" value="nmsu.edu" />
+          <?php if ($settings['search_method'] == 'google'): ?>
           <input type="hidden" name="search_method" value="google" />
+          <?php elseif ($settings['search_method'] == 'google_custom'): ?>
+          <input type="hidden" name="search_method" value="google_custom" />
+        <?php endif; ?>
           <input type="text" name="s" id="s" value="" placeholder="Search <?php bloginfo('name'); ?>" />
           <a onClick="document.getElementById('search').submit()"></a>
         </fieldset>
