@@ -99,5 +99,5 @@
      <div id="feature"> <img src="<?php bloginfo('template_directory'); ?>/img/swim.jpg" width="960" height="480"> </div>
     <!-- #feature -->
 	
-        <?php if(function_exists(simple_breadcrumb)) {simple_breadcrumb();} ?>
+        <?php if(function_exists('simple_breadcrumb')) {simple_breadcrumb();} ?>
       
